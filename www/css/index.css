@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+input {
+    float: right;
+}
+
+label {
+    font-size: 20px;
+}
