@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Página Principal</title>
+    </head>
+    <body>
+        <header>            
+             <center>
+                <h2>Determinación de Utilidad</h2>
+            </center>                    
+        </header>
+
+        <article>
+            <a href="Ajustes.html"><input type="image" src="img/engrane.png"></a>
+
+            <a href="Pagina_Secundaria.html"><input id="menu" type="image" src="img/menu.png"></a>
+        </article>
+
+        <br><br><br><br>
+
+        <article>
+            <form name="formulario-principal" action="javascript:;" onsubmit="CalcularVenta()" method="post">
+
+                <label for="Precio_Factura">Precio Factura: </label>
+                <input type="number" name="precio_factura" id="tb_Precio_Factura" onclick="select()">
+
+                <br><br>
+
+                <label for="venta">Venta: </label>
+                <input type="text" name="venta" readonly="true" id="tb_Venta" value="0">
+
+                <br><br>
+
+                <label for="isan">Isan: </label>
+                <input type="text" name="isan" readonly="true" id="tb_Isan" value="0">
+
+                <br><br>
+
+                <label for="iva">IVA: </label>
+                <input type="text" name="iva" readonly="true" id="tb_Iva" value="0">
+
+                <br><br>
+
+                <label for="total">Total: </label>
+                <input type="text" name="total" readonly="true" id="tb_Total" value="0">
+
+                <br><br><br><br>
+
+                <label for="unidad">Costo de Unidad: </label>
+                <input type="number" name="unidad" id="tb_Costo_Unidad" onclick="select()">
+
+                <br><br>
+
+                <label for="gastos">Gastos: </label>
+                <input type="text" name="gastos" readonly="true" id="tb_Gastos" value="0">
+
+                <br><br>
+
+                <label for="bonificacion">Bonificación: </label>
+                <input type="text" name="bonificacion" readonly="true" id="tb_Bonificacion" value="0">
+
+                <br><br>
+
+                <label for="utilidad">Utilidad: </label>
+                <input type="text" name="utilidad" readonly="true" id="tb_Utilidad" value="0">
+
+                <br><br><br><br>
+
+                <label for="comision">Comisión del Asesor: </label>
+                <input type="text" name="comision" readonly="true" id="tb_Comision" value="0">
+
+                <br><br>
+
+                <label for="inventario">Alto inventario: </label>
+                <input type="text" name="inventario" readonly="true" id="tb_Inventario" value="0"> 
+
+                <br><br>
+
+                <label for="hibridos">Hibrídos: </label>
+                <input type="text" name="hibridos" readonly="true" id="tb_Hibridos" value="0">
+
+                <br><br><br>
+
+                <input type="submit" name="generar" value="Generar Valores">
+                <input type="button" name="prueba" value="Prueba" onclick="blabla()">
+
+
+                
+            </form>
+            
+        </article>
+
+        <footer>
+            
+        </footer>
+    </body>
+    <script src="js/CalculosPagPrincipal.js"></script>
+</html>
