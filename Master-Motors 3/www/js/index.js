@@ -306,9 +306,9 @@ function muestratabla()
 				if(YupJustOnce==0)
 				{
 					tr+='<tr>';
-					tr+='<td> Automovil </td>';
-					tr+='<td> Precio </td>';
-					tr+='<td> Color </td>';
+					tr+='<th> Automovil </th>';
+					tr+='<th> Precio </th>';
+					tr+='<th> Color </th>';
 					tr+='</tr>';
 					i--;
 					YupJustOnce=1;

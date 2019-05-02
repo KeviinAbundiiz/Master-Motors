@@ -218,6 +218,31 @@ function CalcularVenta()
 		}
 	}
 }
+function blabla()
+{
+	var Objeto_tb_PreFac = document.getElementById("tb_Precio_Factura");
+	var Objeto_tb_Venta = document.getElementById("tb_Venta");
+	var Objeto_tb_Iva = document.getElementById("tb_Iva");
+	var Objeto_tb_Isan = document.getElementById("tb_Isan");
+	var Objeto_tb_Total = document.getElementById("tb_Total");
+	var Objeto_tb_Costo_Unidad = document.getElementById("tb_Costo_Unidad");
+	var Objeto_tb_Bonificacion = document.getElementById("tb_Bonificacion");
+	var Objeto_tb_Utilidad = document.getElementById("tb_Utilidad");
+	var Objeto_tb_Comision = document.getElementById("tb_Comision");
+	var Objeto_tb_Inventario = document.getElementById("tb_Inventario");
+	var Objeto_tb_Hibridos = document.getElementById("tb_Hibridos");
+	Objeto_tb_PreFac.value = "";
+	Objeto_tb_Venta.value = "0";
+	Objeto_tb_Iva.value = "0";
+	Objeto_tb_Isan.value = "0";
+	Objeto_tb_Total.value = "0";
+	Objeto_tb_Costo_Unidad.value = "";
+	Objeto_tb_Bonificacion.value = "0";
+	Objeto_tb_Utilidad.value = "0";
+	Objeto_tb_Comision.value = "0";
+	Objeto_tb_Inventario.value = "0";
+	Objeto_tb_Hibridos.value = "0";
+}
 
 function SacaD11()
 {
