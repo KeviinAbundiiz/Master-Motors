@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8"><!--
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <title>Modificar Automóvil</title>
+    </head>
+    <body>
+        <header>
+            <center>
+                <h1>Modificar Automóvil</h1>
+            </center>
+        </header>
+
+        <article>
+            <a href="Modificaciones.html"><input id="menu" type="image" src="img/menu.png"></a>
+        </article>
+
+        <br><br>
+        
+        <article>
+            <form action="javascript:;" onsubmit="ActualizarDatos()" name="modificar" method="post">
+                <center>
+                    <h2>Seleccione Automóvil</h2>
+                    <select name="auto" id="auto" onchange="probando()" onfocus="SelectParaLista()">
+                    <option selected>Selecciona un Automovil</option>
+                    <!--
+                    <option onfocus="probando()">Automóvil 2</option>
+                    <option onclick="probando()">Automóvil 3</option>
+                    <option onselect="probando()">Automóvil 4</option>
+                    <option>Automóvil 5</option>
+                    <option>Automóvil 6</option>
+                    <option>Automóvil 7</option>
+                    <option>Automóvil 8</option>
+                    <option>Automóvil 9</option>  
+                    -->               
+                    </select>
+                </center>
+
+                <br>
+
+                <center>
+                    <h2>Precio</h2>
+                    <input type="text" name="precio" id="precio" maxlength="12" placeholder="Ingrese nuevo precio" required>
+                </center>
+
+                <br>
+
+                <center>
+                    <h2>Color</h2>
+                    <input type="text" name="color" id="color" maxlength="30" placeholder="Ingrese color de automóvil" required>
+                </center>
+
+                <br><br><br>
+
+                <center>
+                    <input type="submit" name="entrar" id="entrar" value="Guardar">
+                </center>
+                
+            </form>
+            
+            
+        </article>
+
+        <footer>
+            
+        </footer>
+    </body>
+    <script src="js/index.js"></script>
+</html>

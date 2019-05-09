@@ -1,0 +1,92 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+p {
+    font-size: 13px;
+}
+
+input {
+    float: right;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: #D7D3D3;
+    width: 140px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+label {
+    font-size: 20px;
+
+}
+
+input[type=image]{
+	float: left;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+}
+
+input[type=image][id=menu]{
+	float: right;
+    background-color: black;
+    width: 35px;
+    height: 35px;
+}
+
+textarea {
+    float: right;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: #D7D3D3;
+    width: 140px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+    border-spacing: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: #333;
+}
+th, td {
+    padding: 0.5em;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #333;
+}
+th {
+    background-color: #E2E2E2;
+}
+td {
+    background-color: #F0F0F0;
+}
+.Hide {
+    display: none;
+}
+.LeftInputs {
+    float: left; 
+}
+.LeftHideInputs {
+    float: left;
+    display: none;
+}
+#CentrateMierda {
+    float: none;
+}
