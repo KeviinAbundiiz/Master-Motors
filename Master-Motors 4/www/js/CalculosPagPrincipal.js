@@ -79,7 +79,66 @@ catch(e)
 {
  alert(e);
 }		
-
+//-	-	-	-	-	-	-	-	-	Costo Unidad 	-	-	-	-	-	-	-	-	-//
+var PrecioCarroSeleccionado;
+function ListaCarroPrecio()
+{
+	var obj_Select_List = document.getElementById("S_Automovil");
+	db.transaction(function(tx)
+	{
+		tx.executeSql('SELECT * FROM HotWheels',[], function(tx, SetResult)
+		{
+			var rows = SetResult.rows;
+			var OptioN = '';
+			var FT=0; //auxiliar para que selected solo sea una vez
+			for(var i=0;i<rows.length;i++)
+			{
+				if(FT == 0)
+				{
+					OptioN='<option selected>';
+					FT=1;	
+				}
+				else
+				{
+					OptioN+='<option>';
+				}
+				OptioN+=rows[i].Nombre_Carro+" | "+rows[i].Precio_Carro;
+				OptioN+='</option>';
+			}
+			console.log("html = "+OptioN);
+			obj_Select_List.innerHTML = OptioN;
+		});
+	});
+}
+function SoloMostrarPrecioCarro()
+{
+	var obj_Select_List = document.getElementById("S_Automovil");
+	db.transaction(function(tx)
+	{
+		tx.executeSql('SELECT * FROM HotWheels',[], function(tx, SetResult)
+		{
+			var rows = SetResult.rows;
+			var OptioN = '';
+			var FT=0; //auxiliar para que selected solo sea una vez
+			for(var i=0;i<rows.length;i++)
+			{
+				if(FT == 0)
+				{
+					OptioN='<option selected>';
+					FT=1;	
+				}
+				else
+				{											//como logro que solo me de el precio :C
+					OptioN+='<option>';
+				}
+				OptioN+=rows[i].Precio_Carro;
+				OptioN+='</option>';
+			}
+			console.log("html = "+OptioN);
+			obj_Select_List.innerHTML = OptioN;
+		});
+	});
+}
 //-	-	-	-	-	-	-	-	-	-	-	-	Variables Globales	-	-	-	-	-//
 
 var TB4; 	var TC4;	var TD4;	var TE4;
@@ -87,7 +146,8 @@ var TB5;	var TC5;  	var TD5;	var TE5;
 var TB6;  	var TC6;  	var TD6;	var TE6;
 var TB7;	var TC7;	var TD7;	var TE7;
 var TB8;  	/*nada*/	var TD8;	var TE8;
-
+var Objeto_tb_Gastos = document.getElementById("tb_Gastos");
+var Objeto_tb_Bonificacion = document.getElementById("tb_Bonificacion");
 AsignarTablaIsan();
 function AsignarTablaIsan()
 {
@@ -143,6 +203,16 @@ var Utilidad;
 var Comision_Asesor;
 var Inventario;
 var Hibridos;
+db.transaction(function(tx)
+{
+	tx.executeSql("SELECT * FROM BO_GA",[],function(tx,ResultSet)
+	{
+		var rows = ResultSet.rows;
+		Objeto_tb_Gastos.value = rows[0].Gastos;
+		Objeto_tb_Bonificacion.value = rows[0].Bonificaciones;
+	});
+});
+
 //-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-//
 function CalcularVenta()
 {
@@ -153,7 +223,6 @@ function CalcularVenta()
 	var Objeto_tb_Isan = document.getElementById("tb_Isan");
 	var Objeto_tb_Total = document.getElementById("tb_Total");
 	var Objeto_tb_Costo_Unidad = document.getElementById("tb_Costo_Unidad");
-	var Objeto_tb_Bonificacion = document.getElementById("tb_Bonificacion");
 	var Objeto_tb_Utilidad = document.getElementById("tb_Utilidad");
 	var Objeto_tb_Comision = document.getElementById("tb_Comision");
 	var Objeto_tb_Inventario = document.getElementById("tb_Inventario");
@@ -179,8 +248,9 @@ function CalcularVenta()
 		Total = D28+D7+D40;	// Venta + ISAN + IVA
 		Venta = D28;
 		Costo_Unidad = Objeto_tb_Costo_Unidad.value; /* 374568.65; */
-		Gastos = 0;	// Esto va a cambiar por una lectura de base de datos(?) o quiza por un valor leido, no se
-		Bonificacion = ((Costo_Unidad / 100)*6);
+
+		Gastos = Objeto_tb_Gastos.value;	
+		Bonificacion = Objeto_tb_Bonificacion.value; //((Costo_Unidad / 100)*6);
 		Utilidad = Venta - Costo_Unidad + Bonificacion - Gastos;
 		Comision_Asesor = (Utilidad * 13) / 100;
 		Inventario = (Comision_Asesor * 15) / 10;

@@ -1,6 +1,21 @@
 //-	-	-	-	-	-	-	-	- Gastos -	-	-	-	-	-	-	-	-//
 var JustOnce = 0;
-function RecolectaDatos()
+function SubmitTotalGastos()
+{
+	try 
+	{
+		var Objeto_tb_TotalGastos = document.getElementById("tb_Total_Gastos");
+		db.transaction(function(tx)
+		{
+			tx.executeSql("UPDATE BO_GA SET Gastos ="+Objeto_tb_TotalGastos.value);
+		});
+	} 
+	catch(e) 
+	{
+		console.log(e);
+	}
+}
+/*function RecolectaDatos()
 {
 	if(obj_tb_HP.value != "")
 	{
@@ -87,7 +102,7 @@ function RecolectaDatos()
 		//Codigo sqlite para insertar un .value = 0;
 	}
 	JustOnce=0;
-}
+}*/
 function p1()
 {
 	Sumador();
@@ -96,8 +111,6 @@ function p2()
 {
 	Sumador();
 }
-
-
 var obj_tb_HP = document.getElementById("tb_HP");
 var obj_tb_Externo = document.getElementById("tb_Externo");
 var obj_tb_CSI = document.getElementById("tb_CSI");
@@ -122,6 +135,36 @@ function Sumador()
 
 //-	-	-	-	-	-	-	-	- bonificaciones -	-	-	-	-	-	-//
 var Num_Bonuses = 0;
+
+function Sumador2()
+{
+	var PBonif = document.getElementById("PrimerBonif");
+	var HiddenElements = document.getElementsByClassName("Hide");
+	var Objeto_tb_TotalBonifs = document.getElementById("tb_TotalBonifs");
+	var Sumatorio = 0;
+	Objeto_tb_TotalBonifs.value = parseFloat(PBonif.value);
+	Sumatorio =  parseFloat(PBonif.value);
+	for(var i = 0 ; i < HiddenElements.length ; i++)
+	{
+		Sumatorio += parseFloat(HiddenElements[i].value);
+	}
+	Objeto_tb_TotalBonifs.value = (Sumatorio).toString();
+}
+function SubmitTotalBonif()
+{
+	try 
+	{
+		var Objeto_tb_TotalBonifs = document.getElementById("tb_TotalBonifs");
+		db.transaction(function(tx)
+		{
+			tx.executeSql("UPDATE BO_GA SET Bonificaciones ="+Objeto_tb_TotalBonifs.value);
+		});
+	} 
+	catch(e) 
+	{
+		console.log(e);
+	}
+}
 function AddNewBonif()
 {
 	var btn_anade = document.getElementById("Anade");
@@ -437,7 +480,7 @@ try
     });
     db.transaction(function(tx)
     {
-    	tx.executeSql("CREATE TABLE IF NOT EXISTS ")
+    	tx.executeSql("CREATE TABLE IF NOT EXISTS BO_GA (Bonificaciones NUMERIC, Gastos NUMERIC)");
     });
 
     db.transaction(function(tx)

@@ -14,7 +14,32 @@ try
     {
     	tx.executeSql("CREATE TABLE IF NOT EXISTS Login (Contrasena TEXT PRIMARY KEY)");
     });
-   
+    db.transaction(function(tx)
+    {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS BO_GA (Bonificaciones NUMERIC, Gastos NUMERIC)");
+    });
+    db.transaction(function(tx)
+    {
+        tx.executeSql("SELECT * FROM BO_GA",[],function(tx,SetResult)
+        {
+            var rows = SetResult.rows;
+            if(SetResult.rows[0] == undefined)
+            {
+                InsertaCerosEnBOGA();
+            }
+        });
+    });
+    function InsertaCerosEnBOGA()
+    {
+        db.transaction(function(tx)
+        {
+            tx.executeSql("INSERT INTO BO_GA VALUES(0,0)");
+        });
+    }
+    db.transaction(function(tx)
+    {
+        tx.executeSql("UPDATE BO_GA SET Bonificaciones=0 ,Gastos=0");
+    });
     db.transaction(function(tx)
     {
     	tx.executeSql("SELECT * FROM Login",[],function(tx,SetResult)
