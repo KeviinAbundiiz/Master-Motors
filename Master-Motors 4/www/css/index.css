@@ -97,3 +97,13 @@ td {
     float: left;
     margin-top: 10px;
 }
+#S_Automovil {
+    padding-left: 10px;
+    background-color: #D7D3D3;
+    font-size: 12px;
+    width: 160px;
+    border-radius: 10px;
+    border-color: black;
+    height: 29px;
+    outline-color: black;
+}

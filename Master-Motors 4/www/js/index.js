@@ -164,6 +164,7 @@ function SubmitTotalBonif()
 	{
 		console.log(e);
 	}
+	alert("Se han agregado las bonificaciones.")
 }
 function AddNewBonif()
 {
@@ -325,10 +326,11 @@ function Anadir_Carro()
 		console.log(	  "INSERT INTO Carros VALUES('"+ NewcarValue +"','"+
 			 PrecioValue + "','"+ ColorValue +"') ");
 		
-	}/*
+	}
 	obj_tb_NewCar.value = "";
 	obj_tb_Precio.value = "";
-	obj_tb_Color.value = "";*/
+	obj_tb_Color.value = "";
+	alert(NewcarValue+" a sido agregado.");
 }
 function muestratabla()
 {
@@ -385,15 +387,16 @@ function SelectParaLista()
 			{
 				if(FT == 0)
 				{
-					OptioN='<option selected>';
+					OptioN='<option selected> Seleccionar Automovil </option>';
 					FT=1;	
+					i--;
 				}
 				else
 				{
 					OptioN+='<option>';
+					OptioN+=rows[i].Nombre_Carro;
+					OptioN+='</option>';
 				}
-				OptioN+=rows[i].Nombre_Carro;
-				OptioN+='</option>';
 			}
 			console.log("html = "+OptioN);
 			obj_Select_List.innerHTML = OptioN;
@@ -422,14 +425,26 @@ function ActualizarDatos()
 	var ItemSelected = obj_Select_List.value;
 	PrecioValue = obj_tb_Precio.value;
 	ColorValue = obj_tb_Color.value;
-	db.transaction(function(tx)
+	
+	if(ItemSelected != 'Seleccionar Automovil')
 	{
-		tx.executeSql("UPDATE HotWheels SET Precio_Carro='"+PrecioValue+"',Color_Carro='"+ColorValue+
-			"' where Nombre_Carro='"+ItemSelected+"'");
-	});
-	console.log("UPDATE HotWheels SET Precio_Carro='"+PrecioValue+"',Color_Carro='"+ColorValue+
-			"' where Nombre_Carro='"+ItemSelected+"'");
-	SelectParaLista();
+		db.transaction(function(tx)
+		{
+			tx.executeSql("UPDATE HotWheels SET Precio_Carro='"+PrecioValue+"',Color_Carro='"+ColorValue+
+				"' where Nombre_Carro='"+ItemSelected+"'");
+		});
+		console.log("UPDATE HotWheels SET Precio_Carro='"+PrecioValue+"',Color_Carro='"+ColorValue+
+				"' where Nombre_Carro='"+ItemSelected+"'");
+		SelectParaLista();
+	//	ItemSelected = "Seleccione automovil";
+		obj_tb_Precio.value = "";
+		obj_tb_Color.value = "";
+		alert(ItemSelected+" a sido modificado.");
+	}
+	else
+	{
+		alert("Selecciona una opcion valida.");
+	}
 }/*
 function checaitemselected()
 {
@@ -443,13 +458,21 @@ function EliminarDato()
 {
 	var obj_Select_List = document.getElementById("auto");
 	var ItemSelected = obj_Select_List.value;
-	db.transaction(function(tx)
+	if(ItemSelected != 'Seleccionar Automovil')
 	{
-		//tx.executeSql("DELETE FROM HotWheels");
-		tx.executeSql("DELETE FROM HotWheels WHERE Nombre_Carro='"+ItemSelected+"'");
-		console.log("DELETE FROM HotWheels WHERE Nombre_Carro='"+ItemSelected+"'");
-	});
-	SelectParaLista();
+		db.transaction(function(tx)
+		{
+			//tx.executeSql("DELETE FROM HotWheels");
+			tx.executeSql("DELETE FROM HotWheels WHERE Nombre_Carro='"+ItemSelected+"'");
+			console.log("DELETE FROM HotWheels WHERE Nombre_Carro='"+ItemSelected+"'");
+		});
+		SelectParaLista();
+		alert(ItemSelected+" a sido Eliminado.");
+	}
+	else
+	{
+		alert("Selecciona una opcion valida.")
+	}
 }
 
 

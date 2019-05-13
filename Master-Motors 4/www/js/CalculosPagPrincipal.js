@@ -80,7 +80,7 @@ catch(e)
  alert(e);
 }		
 //-	-	-	-	-	-	-	-	-	Costo Unidad 	-	-	-	-	-	-	-	-	-//
-var PrecioCarroSeleccionado;
+var PrecioCarroSeleccionado = 0;
 function ListaCarroPrecio()
 {
 	var obj_Select_List = document.getElementById("S_Automovil");
@@ -91,36 +91,62 @@ function ListaCarroPrecio()
 			var rows = SetResult.rows;
 			var OptioN = '';
 			var FT=0; //auxiliar para que selected solo sea una vez
+
 			for(var i=0;i<rows.length;i++)
 			{
 				if(FT == 0)
 				{
-					OptioN='<option selected>';
-					FT=1;	
+					OptioN='<option> Selecciona una opcion </option>';
+					FT=1;
+					i--;	
 				}
 				else
 				{
 					OptioN+='<option>';
+					OptioN+=rows[i].Nombre_Carro+" | "+rows[i].Precio_Carro;
+					OptioN+='</option>';
 				}
-				OptioN+=rows[i].Nombre_Carro+" | "+rows[i].Precio_Carro;
-				OptioN+='</option>';
+				
 			}
 			console.log("html = "+OptioN);
 			obj_Select_List.innerHTML = OptioN;
 		});
 	});
 }
+function PrecioCarroSeleccionadoMasMAs()
+{
+	PrecioCarroSeleccionado++;
+}
+function PrecioCarroSeleccionadoACero()
+{
+	PrecioCarroSeleccionado=0;
+}
+var PrecioACtual ="";
+function CrearPrecioActual(NewChar)
+{
+	PrecioACtual+=NewChar;
+}
+function ReiniciarPrecioActual()
+{
+	PrecioACtual= "";
+}
 function SoloMostrarPrecioCarro()
 {
+	ReiniciarPrecioActual();
 	var obj_Select_List = document.getElementById("S_Automovil");
-	db.transaction(function(tx)
+	var Objeto_tb_Costo_Unidad = document.getElementById("tb_Costo_Unidad");
+	/*db.transaction(function(tx)
 	{
-		tx.executeSql('SELECT * FROM HotWheels',[], function(tx, SetResult)
+		tx.executeSql("SELECT Precio_Carro FROM HotWheels",[], function(tx, SetResult)
 		{
 			var rows = SetResult.rows;
 			var OptioN = '';
 			var FT=0; //auxiliar para que selected solo sea una vez
-			for(var i=0;i<rows.length;i++)
+			//for(var j = 0 ; j < rows.length ; j++)
+			//{
+				
+			//}
+			/*for(var i=0;i<PrecioCarroSeleccionado;i++)
 			{
 				if(FT == 0)
 				{
@@ -128,16 +154,38 @@ function SoloMostrarPrecioCarro()
 					FT=1;	
 				}
 				else
-				{											//como logro que solo me de el precio :C
-					OptioN+='<option>';
-				}
-				OptioN+=rows[i].Precio_Carro;
-				OptioN+='</option>';
-			}
+				{	*/										//como logro que solo me de el precio :C
+					//OptioN='<option selected>';
+				//}
+				//OptioN+=PrecioACtual;
+				//OptioN+='</option>';
+			/*}
 			console.log("html = "+OptioN);
-			obj_Select_List.innerHTML = OptioN;
+			Objeto_tb_Costo_Unidad.value = PrecioACtual;
+			//obj_Select_List.innerHTML = OptioN;
 		});
-	});
+	});*/
+	var IFTRUEGO = 0;
+	for(var k = 0; k < obj_Select_List.value.length ; k++)
+	{
+		//console.log("obj_Select_List.value.charAt("+k+")"+obj_Select_List.value.charAt(k));
+		//console.log("rows["+j+"].Precio_Carro.charAt("+k+") = "+rows[j].Precio_Carro.charAt(k));
+		if(obj_Select_List.value.charAt(k) == '|')
+		{
+			if(IFTRUEGO==0)
+			{
+				k+=2;	
+			}
+			IFTRUEGO = 1;
+			//console.log("Entre aqui");
+		}
+		if(IFTRUEGO==1)
+		{
+			CrearPrecioActual(obj_Select_List.value.charAt(k))
+			//console.log("PrecioACtual = "+PrecioACtual);
+			Objeto_tb_Costo_Unidad.value = PrecioACtual;
+		}		
+	}
 }
 //-	-	-	-	-	-	-	-	-	-	-	-	Variables Globales	-	-	-	-	-//
 

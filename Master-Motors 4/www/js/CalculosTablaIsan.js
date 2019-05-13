@@ -126,4 +126,5 @@ function ModificarTablaIsan()
 			" WHERE "+GlobalColumn+" = "+GlobalValue);
 	});
 	LoadIsanTable();
+	alert("La tabla ISAN a sido modificado.");
 }
