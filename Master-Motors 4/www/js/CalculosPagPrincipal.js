@@ -108,7 +108,7 @@ function ListaCarroPrecio()
 				}
 				
 			}
-			console.log("html = "+OptioN);
+			//console.log("html = "+OptioN);
 			obj_Select_List.innerHTML = OptioN;
 		});
 	});
@@ -135,41 +135,9 @@ function SoloMostrarPrecioCarro()
 	ReiniciarPrecioActual();
 	var obj_Select_List = document.getElementById("S_Automovil");
 	var Objeto_tb_Costo_Unidad = document.getElementById("tb_Costo_Unidad");
-	/*db.transaction(function(tx)
-	{
-		tx.executeSql("SELECT Precio_Carro FROM HotWheels",[], function(tx, SetResult)
-		{
-			var rows = SetResult.rows;
-			var OptioN = '';
-			var FT=0; //auxiliar para que selected solo sea una vez
-			//for(var j = 0 ; j < rows.length ; j++)
-			//{
-				
-			//}
-			/*for(var i=0;i<PrecioCarroSeleccionado;i++)
-			{
-				if(FT == 0)
-				{
-					OptioN='<option selected>';
-					FT=1;	
-				}
-				else
-				{	*/										//como logro que solo me de el precio :C
-					//OptioN='<option selected>';
-				//}
-				//OptioN+=PrecioACtual;
-				//OptioN+='</option>';
-			/*}
-			console.log("html = "+OptioN);
-			Objeto_tb_Costo_Unidad.value = PrecioACtual;
-			//obj_Select_List.innerHTML = OptioN;
-		});
-	});*/
 	var IFTRUEGO = 0;
 	for(var k = 0; k < obj_Select_List.value.length ; k++)
 	{
-		//console.log("obj_Select_List.value.charAt("+k+")"+obj_Select_List.value.charAt(k));
-		//console.log("rows["+j+"].Precio_Carro.charAt("+k+") = "+rows[j].Precio_Carro.charAt(k));
 		if(obj_Select_List.value.charAt(k) == '|')
 		{
 			if(IFTRUEGO==0)
@@ -177,15 +145,24 @@ function SoloMostrarPrecioCarro()
 				k+=2;	
 			}
 			IFTRUEGO = 1;
-			//console.log("Entre aqui");
 		}
 		if(IFTRUEGO==1)
 		{
 			CrearPrecioActual(obj_Select_List.value.charAt(k))
-			//console.log("PrecioACtual = "+PrecioACtual);
 			Objeto_tb_Costo_Unidad.value = PrecioACtual;
 		}		
 	}
+	CalcularVenta();
+}
+var Prtj = 15;
+function QuitarSimboloPorcentaje()
+{
+	var Mdfc = "";
+	var obj_slct_Prtj = document.getElementById("S_Porcentaje");
+	Mdfc = obj_slct_Prtj.value.charAt(0);
+	Mdfc += obj_slct_Prtj.value.charAt(1);
+	Prtj = Mdfc;
+	CalcularVenta();
 }
 //-	-	-	-	-	-	-	-	-	-	-	-	Variables Globales	-	-	-	-	-//
 
@@ -302,7 +279,7 @@ function CalcularVenta()
 		Utilidad = Venta - Costo_Unidad + Bonificacion - Gastos;
 		Comision_Asesor = (Utilidad * 13) / 100;
 		Inventario = (Comision_Asesor * 15) / 10;
-		Hibridos = (Utilidad * 15) / 100;
+		Hibridos = (Utilidad * Prtj) / 100;
 		//-		-	-	-	-	-	-	-	-	Impresiones	-	-	-	-	-	-	-	-//
 		Objeto_tb_Venta.value = D28;
 		Objeto_tb_Isan.value = D40;

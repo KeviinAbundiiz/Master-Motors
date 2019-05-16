@@ -107,3 +107,8 @@ td {
     height: 29px;
     outline-color: black;
 }
+#S_Porcentaje {
+    background-color: #D7D3D3;
+    width: 50px;
+    border-radius: 10px;
+}

@@ -29,7 +29,7 @@
             <form name="formulario-principal" action="javascript:;" onsubmit="CalcularVenta()" method="post">
 
                 <label for="Precio_Factura">Precio Factura: </label>
-                <input type="number" name="precio_factura" id="tb_Precio_Factura" onclick="select()">
+                <input type="number" name="precio_factura" id="tb_Precio_Factura" onkeyup="CalcularVenta()" value="0" onclick="select()">
 
                 <br><br>
 
@@ -54,7 +54,7 @@
                 <br><br><br><br>
 
                 <label for="unidad">Costo de Unidad: </label>
-                <input type="number" name="unidad" id="tb_Costo_Unidad" onclick="select()">
+                <input type="number" name="unidad" id="tb_Costo_Unidad" readonly="true" value="0">
                 <select name="Automoviles" id="S_Automovil" onfocus="ListaCarroPrecio()" onchange="SoloMostrarPrecioCarro()">
                     <option selected="true"> Selecciona una opcion </option>
                 </select>
@@ -87,6 +87,14 @@
                 <br><br>
 
                 <label for="hibridos">Hibrídos: </label>
+                <select name="Porcentaje" id="S_Porcentaje" onchange="QuitarSimboloPorcentaje()">
+                    <option value="5">05%</option>
+                    <option value="10">10%</option>
+                    <option selected value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                </select>
                 <input type="text" name="hibridos" readonly="true" id="tb_Hibridos" value="0">
 
                 <br><br><br>

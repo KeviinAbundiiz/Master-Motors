@@ -9,6 +9,7 @@ function SubmitTotalGastos()
 		{
 			tx.executeSql("UPDATE BO_GA SET Gastos ="+Objeto_tb_TotalGastos.value);
 		});
+		alert("Se han agregado los Gastos.");
 	} 
 	catch(e) 
 	{
@@ -164,7 +165,7 @@ function SubmitTotalBonif()
 	{
 		console.log(e);
 	}
-	alert("Se han agregado las bonificaciones.")
+	alert("Se han agregado las bonificaciones.");
 }
 function AddNewBonif()
 {
