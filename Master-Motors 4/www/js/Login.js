@@ -76,7 +76,7 @@ function ValidarContrasena() {
 	//alert("Texto ingresado en el campo de texto de la contraseña: "+contra);
 
 	if(contra == ""){
-        alert("Campo de contraseña vacio");
+        alert("Campo de contraseña vacio.");
         
     }
 
